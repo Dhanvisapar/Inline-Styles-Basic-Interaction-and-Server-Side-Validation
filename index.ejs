@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Task 2</title>
+</head>
+
+<body style="background:#8aa1d3; font-family:Arial; text-align:center; padding-top:40px;">
+
+<h1>Task 2: Form Validation</h1>
+
+<form action="/submit" method="POST" onsubmit="return validateForm()"
+      style="background:#fff; width:300px; margin:auto; padding:20px; border-radius:10px;">
+
+  <input type="text" name="name" placeholder="Name"
+         style="width:90%; padding:8px; margin:5px;"><br>
+
+  <input type="email" name="email" placeholder="Email"
+         style="width:90%; padding:8px; margin:5px;"><br>
+
+  <input type="number" name="age" placeholder="Age"
+         style="width:90%; padding:8px; margin:5px;"><br>
+
+  <button type="submit"
+          style="padding:10px 20px; margin-top:10px;">
+    Submit
+  </button>
+
+</form>
+
+<p style="color:red;"><%= error %></p>
+<p style="color:green;"><%= success %></p>
+
+<h3>Stored Users</h3>
+<ul>
+  <% users.forEach(u => { %>
+    <li><%= u.name %> | <%= u.email %> | Age: <%= u.age %></li>
+  <% }) %>
+</ul>
+
+<script>
+function validateForm() {
+  const name = document.forms[0].name.value;
+  const email = document.forms[0].email.value;
+  const age = document.forms[0].age.value;
+
+  if (name === "" || email === "" || age === "") {
+    alert("All fields are required");
+    return false;
+  }
+
+  if (age < 18) {
+    alert("Age must be 18 or above");
+    return false;
+  }
+
+  return true;
+}
+</script>
+
+</body>
+</html>
